@@ -1,5 +1,5 @@
-# Ignore the target directory
-/target/
+# Ignore all target directories
+**/target/
 
-# Ignore the Cargo.lock file
-Cargo.lock
+# Ignore all Cargo.lock files
+**/Cargo.lock
