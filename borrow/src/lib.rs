@@ -1,6 +1,6 @@
 
 pub fn str_len(s: &str) -> usize {
-    s.len()
+    s.chars().count()
 }
 
 #[cfg(test)]
