@@ -1,6 +1,6 @@
 use rand::Rng;
 
-#[derive(PartialEq, Debug, Clone)]
+#[derive(PartialEq, Debug,Copy, Clone)]
 pub enum Suit {
     Heart,
     Diamond,
@@ -13,7 +13,7 @@ impl Suit {
         let mut rng =  rand::thread_rng();
         let suit = [Suit::Heart, Suit::Diamond, Suit::Spade, Suit::Club];
         let random_index =rng.gen_range(0..suit.len());
-        suit[random_index].clone()
+        suit[random_index]
     }
 
     pub fn translate(value: u8) -> Suit {
@@ -27,7 +27,7 @@ impl Suit {
     }
 }
 
-#[derive(PartialEq, Debug, Clone)]
+#[derive(PartialEq, Debug, Copy, Clone)]
 pub enum Rank {
     Ace,
     King,
@@ -40,7 +40,7 @@ impl Rank {
         let mut rng =  rand::thread_rng();
         let rank = [Rank::Ace, Rank::King, Rank::Queen, Rank::Jack];
         let random_index = rng.gen_range(0..rank.len());
-        rank[random_index].clone()
+        rank[random_index]
     }   
 
     pub fn translate(value: u8) -> Rank {
@@ -54,7 +54,7 @@ impl Rank {
     }
 }
 
-#[derive(Debug, PartialEq, Clone)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
