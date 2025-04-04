@@ -12,7 +12,7 @@ impl Suit {
     pub fn random() -> Suit {
         let mut rng =  rand::thread_rng();
         let suit = [Suit::Heart, Suit::Diamond, Suit::Spade, Suit::Club];
-        let random_index =rng.gen_range(0..suit.len());
+        let random_index =rng.gen_range(1..suit.len());
         suit[random_index]
     }
 
@@ -39,7 +39,7 @@ impl Rank {
     pub fn random() -> Rank {
         let mut rng =  rand::thread_rng();
         let rank = [Rank::Ace, Rank::King, Rank::Queen, Rank::Jack];
-        let random_index = rng.gen_range(0..rank.len());
+        let random_index = rng.gen_range(1..rank.len());
         rank[random_index]
     }   
 
@@ -61,7 +61,7 @@ pub struct Card {
 }
 
 pub fn winner_card(card: Card) -> bool {
-    card.suit == Suit::Spade && card.rank == Rank::Ace
+    card.suit == Suit::Spade && matches!(card.rank, Rank::Ace)
 }
 
 #[cfg(test)]
