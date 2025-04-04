@@ -12,7 +12,7 @@ impl Suit {
     pub fn random() -> Suit {
         let mut rng =  rand::thread_rng();
         let suit = [Suit::Heart, Suit::Diamond, Suit::Spade, Suit::Club];
-        let random_index : u8 =rng.gen_range(1..suit.len()).try_into().unwrap();;
+        let random_index : u8 =rng.gen_range(1..suit.len()).try_into().unwrap();
         Suit::translate(random_index)
     }
 
@@ -33,22 +33,24 @@ pub enum Rank {
     King,
     Queen,
     Jack,
+    Number(u8)
 }
 
 impl Rank {
     pub fn random() -> Rank {
         let mut rng =  rand::thread_rng();
-        let rank = [Rank::Ace, Rank::King, Rank::Queen, Rank::Jack];
-        let random_index:u8 = rng.gen_range(1..rank.len()).try_into().unwrap();;
+        // let rank = [Rank::Ace, Rank::King, Rank::Queen, Rank::Jack];
+        let random_index:u8 = rng.gen_range(1..=13).try_into().unwrap();
         Rank::translate(random_index)
     }   
 
     pub fn translate(value: u8) -> Rank {
         match value {
             1 => Rank::Ace,
-            2 => Rank::King,
-            3 => Rank::Queen,
-            4 => Rank::Jack,
+            13 => Rank::King,
+            12 => Rank::Queen,
+            11 => Rank::Jack,
+            2..11 =>Rank::Number(value),
             _ => panic!("Incalid")
         }
     }
