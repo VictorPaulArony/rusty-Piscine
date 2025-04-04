@@ -1,8 +1,8 @@
 #[derive(Debug, Clone, Copy)]
 
 pub struct Circle {
-	center :Point,
-	radius :f64
+	pub center :Point,
+	pub radius :f64
 }
 
 impl Circle {
@@ -56,14 +56,12 @@ mod tests {
         let point_a = Point(1.0, 1.0);
         let point_b = Point(0.0, 0.0);
 
-        
-        
-        
-
+    
         assert_eq!(circle.area(), 70685.83470577035);
         assert_eq!(circle.diameter(), 300);
         assert_eq!(circle1.diameter(), 60);
         assert_eq!(circle.intersect(circle1), false);
         assert_eq!(point_a.distance(point_b), 1.4142135623730951);
+        assert_eq!((circle.radius), 150.0);
     }
 }
