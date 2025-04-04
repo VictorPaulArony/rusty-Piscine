@@ -12,8 +12,8 @@ impl Suit {
     pub fn random() -> Suit {
         let mut rng =  rand::thread_rng();
         let suit = [Suit::Heart, Suit::Diamond, Suit::Spade, Suit::Club];
-        let random_index =rng.gen_range(1..suit.len());
-        suit[random_index]
+        let random_index : u8 =rng.gen_range(1..suit.len()).try_into().unwrap();;
+        Suit::translate(random_index)
     }
 
     pub fn translate(value: u8) -> Suit {
@@ -39,8 +39,8 @@ impl Rank {
     pub fn random() -> Rank {
         let mut rng =  rand::thread_rng();
         let rank = [Rank::Ace, Rank::King, Rank::Queen, Rank::Jack];
-        let random_index = rng.gen_range(1..rank.len());
-        rank[random_index]
+        let random_index:u8 = rng.gen_range(1..rank.len()).try_into().unwrap();;
+        Rank::translate(random_index)
     }   
 
     pub fn translate(value: u8) -> Rank {
