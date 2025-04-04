@@ -12,7 +12,7 @@ impl Circle {
     pub fn area(&self) -> f64 {
         std::f64::consts::PI * (self.radius *self.radius) as f64
     }
-    pub fn intersect(&self, other: &Circle) -> bool {
+    pub fn intersect(&self, other: Circle) -> bool {
         let dx = self.center.0 - other.center.0;
         let dy = self.center.1 - other.center.1;
         let distance = ((dx * dx + dy * dy) as f64).sqrt() as f64;
@@ -33,7 +33,7 @@ pub struct Point(pub f64, pub f64);
 
     
 impl Point {
-    pub fn distance(&self, other: &Point) -> f64 {
+    pub fn distance(&self, other: Point) -> f64 {
         let da = (self.0 - other.0) as f64;
         let db = (self.1 - other.1) as f64;
         (da * da + db * db).sqrt()
@@ -63,7 +63,7 @@ mod tests {
         assert_eq!(circle.area(), 70685.83470577035);
         assert_eq!(circle.diameter(), 300);
         assert_eq!(circle1.diameter(), 60);
-        assert_eq!(circle.intersect(&circle1), false);
-        assert_eq!(point_a.distance(&point_b), 1.4142135623730951);
+        assert_eq!(circle.intersect(circle1), false);
+        assert_eq!(point_a.distance(point_b), 1.4142135623730951);
     }
 }
