@@ -10,6 +10,6 @@ pub fn open_or_create<P: AsRef<Path>>(path: &P, content: &str) {
         .append(true)
         .open(path)
         .unwrap();
-        writeln!(file, "{}", content).unwrap();
+        write!(file, "{}", content).unwrap();
 }
 
