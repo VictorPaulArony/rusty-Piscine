@@ -1,14 +1,14 @@
 pub struct Four {
-    num: Option<u16>
+    pub num: Option<u16>
 }
 pub struct Three {
-    four: Option<Four>
+    pub four: Option<Four>
 }
 pub struct Two {
-   three: Option<Three> 
+  pub three: Option<Three> 
 }
 pub struct One {
-    two: Option<Two>
+   pub two: Option<Two>
     
 }
 
