@@ -1,19 +1,22 @@
-pub struct Four {
-    pub num: Option<u16>
-}
-pub struct Three {
-    pub four: Option<Four>
-}
-pub struct Two {
-  pub three: Option<Three> 
-}
 pub struct One {
-   pub two: Option<Two>
-    
+    pub first_layer: Option<Two>,
+}
+
+pub struct Two {
+    pub second_layer: Option<Three>,
+}
+
+pub struct Three {
+    pub third_layer: Option<Four>,
+}
+
+pub struct Four {
+    pub fourth_layer: Option<u16>,
 }
 
 impl One {
     pub fn get_fourth_layer(self) -> Option<u16> {
-        Some(self.two?.three?.four?.num?)
+        // Use `?` to unpack each layer
+        Some(self.first_layer?.second_layer?.third_layer?.fourth_layer?)
     }
 }
