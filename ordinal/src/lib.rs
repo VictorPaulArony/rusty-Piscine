@@ -1,6 +1,6 @@
 pub fn num_to_ordinal(x: u32) -> String {
     if x == 0 {
-        return "0".to_string();
+        return "0th".to_string();
     }
 
     let nth = match x%100 {
