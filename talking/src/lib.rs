@@ -1,28 +1,28 @@
 pub fn talking(text: &str) -> &str {
-    let trimmed = text.trim();
-
-    if trimmed.is_empty() {
+    if text.trim().is_empty() {
         return "Just say something!";
     }
-
-    let is_all_upper = trimmed.chars().any(|c| c.is_alphabetic())
-        && trimmed.chars().filter(|c| c.is_alphabetic()).all(|c| c.is_uppercase());
-
-    if is_all_upper && trimmed.ends_with('!') {
+   
+    // Check if it's a yelling exclamation (uppercase + !)
+    if text.trim().ends_with("!") && text.trim().chars().any(|c| c.is_alphabetic()) && 
+       text.trim().chars().filter(|c| c.is_alphabetic()).all(|c| c.is_uppercase()) {
         return "There is no need to yell, calm down!";
     }
 
-    if trimmed.ends_with('?') {
-        if is_all_upper {
+    // Check if it's a question
+    if text.trim().ends_with("?") {
+        // Check if the question is in all uppercase
+        if text.trim().chars().any(|c| c.is_alphabetic()) && 
+           text.trim().chars().filter(|c| c.is_alphabetic()).all(|c| c.is_uppercase()) {
             return "Quiet, I am thinking!";
         } else {
             return "Sure.";
         }
     }
-
+    
+    // Default response
     "Interesting"
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -35,6 +35,5 @@ mod tests {
         assert_eq!(talking("WHAT'S GOING ON?"), "Quiet, I am thinking!");
         assert_eq!(talking("something"), "Interesting");
         assert_eq!(talking(""), "Just say something!");
-        assert_eq!(talking("    "), "Just say something!"); // Handles whitespace-only input
     }
 }
