@@ -1,5 +1,5 @@
 pub fn search(array: &[i32], key: i32) -> Option<usize> {
-   Some(array.binary_search(&key).unwrap())
+   Some(array.binary_search(&key).ok()?)
 }
 
 #[cfg(test)]
