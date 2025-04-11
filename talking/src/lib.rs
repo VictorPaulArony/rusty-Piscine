@@ -1,28 +1,28 @@
 pub fn talking(text: &str) -> &str {
     let trimmed = text.trim();
 
-    // Check if the input is empty or contains only whitespace
     if trimmed.is_empty() {
         return "Just say something!";
     }
 
-    // Check if the text is yelling (all uppercase and ends with '!')
-    if trimmed.chars().all(|c| !c.is_alphabetic() || c.is_uppercase()) && trimmed.ends_with('!') {
+    let is_all_upper = trimmed.chars().any(|c| c.is_alphabetic())
+        && trimmed.chars().filter(|c| c.is_alphabetic()).all(|c| c.is_uppercase());
+
+    if is_all_upper && trimmed.ends_with('!') {
         return "There is no need to yell, calm down!";
     }
 
-    // Check if the text is a question (ends with '?')
     if trimmed.ends_with('?') {
-        // Check if the question is yelled (contains uppercase letters)
-        if trimmed.chars().any(|c| c.is_uppercase()) {
+        if is_all_upper {
             return "Quiet, I am thinking!";
+        } else {
+            return "Sure.";
         }
-        return "Sure.";
     }
 
-    // Default response for other cases
     "Interesting"
 }
+
 
 #[cfg(test)]
 mod tests {
