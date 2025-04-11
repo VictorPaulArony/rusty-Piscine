@@ -1,4 +1,4 @@
-pub fn scores(s: &str) -> u64 {
+pub fn score(s: &str) -> u64 {
  s.chars().map(|c| match c.to_ascii_uppercase() {
     'A' | 'E' | 'I' | 'O' | 'U' | 'L' | 'N' | 'R' | 'S' | 'T' => 1,
          'D' | 'G' => 2,
@@ -17,8 +17,8 @@ mod tests {
 
     #[test]
     fn test_scores() {
-        assert_eq!(scores("a"), 1);
-        assert_eq!(scores("ã ê Á?"), 0);
-        assert_eq!(scores("ThiS is A Test"), 14);
+        assert_eq!(score("a"), 1);
+        assert_eq!(score("ã ê Á?"), 0);
+        assert_eq!(score("ThiS is A Test"), 14);
     }
 }
