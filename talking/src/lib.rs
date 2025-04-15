@@ -1,19 +1,14 @@
 pub fn talking(text: &str) -> &str {
     let trimmed = text.trim();
-    if trimmed.is_empty() {
-        "Just say something!"
-    } else if trimmed.ends_with('?') {
-        if trimmed.chars().filter(|c| c.is_ascii_alphabetic()).all(|c| c.is_ascii_uppercase()) && 
-           trimmed.chars().filter(|c| c.is_ascii_alphabetic()).count() > 0 {
-            "Quiet, I am thinking!"
-        } else {
-            "Sure."
-        }
-    } else if trimmed.ends_with("!"){ //trimmed.chars().filter(|c| c.is_ascii_alphabetic()).all(|c| c.is_ascii_uppercase()) && 
-        // trimmed.chars().filter(|c| c.is_ascii_alphabetic()).count() > 0 
-        "There is no need to yell, calm down!"
-    } else {
-        "Interesting"
+    let is_yelling = trimmed.chars().any(|c| c.is_ascii_alphabetic())
+        && trimmed.chars().filter(|c| c.is_ascii_alphabetic()).all(|c| c.is_ascii_uppercase());
+
+    match trimmed {
+        t if t.is_empty() => "Just say something!",
+        t if t.ends_with('?') && is_yelling => "Quiet, I am thinking!",
+        t if t.ends_with('?') => "Sure.",
+        _t if is_yelling => "There is no need to yell, calm down!",
+        _ => "Interesting",
     }
 }
 
