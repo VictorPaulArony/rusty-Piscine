@@ -1,6 +1,7 @@
 pub fn talking(text: &str) -> &str {
     let trimmed = text.trim();
-    let is_yelling = trimmed.chars().filter(|c| c.is_ascii_alphabetic()).all(|c| c.is_ascii_uppercase());
+    let is_yelling = trimmed.chars().any(|c| c.is_ascii_alphabetic())
+        && trimmed.chars().filter(|c| c.is_ascii_alphabetic()).all(|c| c.is_ascii_uppercase());
 
     match trimmed {
         t if t.is_empty() => "Just say something!",
