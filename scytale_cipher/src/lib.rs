@@ -1,6 +1,6 @@
 
 pub fn scytale_cipher(s: String, i: u32) -> String {
-    if i > (s.len() as u32) {
+    if i >= (s.len() as u32) {
         return s;
     }
     let (s1, s2) = s.split_at(i as usize);
@@ -42,7 +42,7 @@ mod tests {
     
     #[test]
     fn it_works() {
-        assert_eq!(scytale_cipher(String::from("scytale Code"), 6), "sec yCtoadle");
+        assert_eq!(scytale_cipher(String::from("qwerty qwerty"), 13), "qwerty qwerty");
         assert_eq!(scytale_cipher(String::from("scytale Code"), 8), "sCcoydtea l e");
     }
 }
