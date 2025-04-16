@@ -1,7 +1,7 @@
 
 pub fn scytale_cipher(s: String, i: u32) -> String {
     if i > (s.len() as u32) {
-        panic!("Index out of bounds");
+        return s;
     }
     let (s1, s2) = s.split_at(i as usize);
     (s1.to_string(), s2.to_string());
